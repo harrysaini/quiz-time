@@ -38,7 +38,7 @@ CREATE TABLE `answers` (
   `id` VARCHAR(255) NOT NULL,
   `questionId` VARCHAR(255) NULL,
   `text` VARCHAR(255) NOT NULL,
-  `index` int(11) NOT NULL DEFAULT '0',
+  `index` INT NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   INDEX `question_idx` (`questionId` ASC) VISIBLE,
   CONSTRAINT `question`
@@ -105,7 +105,7 @@ CREATE TABLE `correct_answer` (
 -- Game_questions
 
 CREATE TABLE `game_questions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `gameId` VARCHAR(255) NOT NULL,
   `questionId` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
