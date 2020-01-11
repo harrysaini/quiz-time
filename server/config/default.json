@@ -1,0 +1,8 @@
+{
+    "db": {
+        "host": "localhost",
+        "username": "root",
+        "password": "gbee@123",
+        "database": "quiz_test"
+    }
+}

@@ -1,0 +1,177 @@
+xecuting (default): CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER auto_increment , `username` VARCHAR(255) UNIQUE, `password` VARCHAR(255), `points` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `users`
+Executing (default): CREATE TABLE IF NOT EXISTS `games` (`id` INTEGER NOT NULL auto_increment , `isGamePlayedByFirstUser` TINYINT(1) DEFAULT false, `isGamePlayedBySecondUser` TINYINT(1) DEFAULT false, `points` INTEGER DEFAULT 0, `player1` INTEGER, `player2` INTEGER, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`player1`) REFERENCES `users` (`id`), FOREIGN KEY (`player2`) REFERENCES `users` (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `games`
+Executing (default): CREATE TABLE IF NOT EXISTS `images` (`id` INTEGER NOT NULL auto_increment , `url` VARCHAR(255), `name` VARCHAR(255), `isPrimaryImage` TINYINT(1) DEFAULT false, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `primaryImageId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`primaryImageId`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `images`
+Executing (default): CREATE TABLE IF NOT EXISTS `tasks` (`id` INTEGER NOT NULL auto_increment , `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `gameId` INTEGER, `imageId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`gameId`) REFERENCES `games` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`imageId`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `tasks`
+Executing (default): CREATE TABLE IF NOT EXISTS `answers` (`id` INTEGER NOT NULL auto_increment , `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `taskId` INTEGER, `imageId` INTEGER, `userId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`taskId`) REFERENCES `tasks` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`imageId`) REFERENCES `images` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `answers`
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image`;
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): INSERT INTO `images` (`id`,`url`,`name`,`isPrimaryImage`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): UPDATE `images` SET `primaryImageId`=?,`updatedAt`=? WHERE `id` = ?
+Executing (default): SELECT `id`, `username`, `password`, `points`, `createdAt`, `updatedAt` FROM `users` AS `user`;
+Executing (default): INSERT INTO `users` (`id`,`username`,`points`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `users` (`id`,`username`,`points`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `users` (`id`,`username`,`points`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `users` (`id`,`username`,`points`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);
+esp-game:server:Listening on 3000
+
+
+
+
+
+
+Executing (default): SELECT `id`, `username`, `password`, `points`, `createdAt`, `updatedAt` FROM `users` AS `user` WHERE `user`.`id` = 5;
+Executing (default): SELECT `id`, `isGamePlayedByFirstUser`, `isGamePlayedBySecondUser`, `points`, `player1`, `player2`, `createdAt`, `updatedAt` FROM `games` AS `game` WHERE `game`.`isGamePlayedByFirstUser` = true AND `game`.`player1` != 5 AND `game`.`player2` IS NULL LIMIT 1;
+Executing (default): INSERT INTO `games` (`id`,`isGamePlayedByFirstUser`,`isGamePlayedBySecondUser`,`points`,`player1`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?);
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`isPrimaryImage` = true;
+Executing (default): INSERT INTO `tasks` (`id`,`createdAt`,`updatedAt`,`gameId`,`imageId`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `tasks` (`id`,`createdAt`,`updatedAt`,`gameId`,`imageId`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `tasks` (`id`,`createdAt`,`updatedAt`,`gameId`,`imageId`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `tasks` (`id`,`createdAt`,`updatedAt`,`gameId`,`imageId`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): INSERT INTO `tasks` (`id`,`createdAt`,`updatedAt`,`gameId`,`imageId`) VALUES (DEFAULT,?,?,?,?);
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`id` = 15;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`id` = 6;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`id` = 3;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`id` = 14;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`id` = 11;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`primaryImageId` = 15;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`primaryImageId` = 6;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`primaryImageId` = 3;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`primaryImageId` = 14;
+Executing (default): SELECT `id`, `url`, `name`, `isPrimaryImage`, `createdAt`, `updatedAt`, `primaryImageId` FROM `images` AS `image` WHERE `image`.`primaryImageId` = 11;
