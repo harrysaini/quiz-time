@@ -7,8 +7,8 @@ const port = app.get('port');
 const setServer = async () => {
   const connection = await DatabaseConnection.getSetupConnection();
   // connection.connect();
-  await dropTables(connection);
-  await initTables(connection);
+  // await dropTables(connection);
+  // await initTables(connection);
   connection.destroy();
 };
 
