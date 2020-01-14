@@ -1,11 +1,9 @@
 import { Router } from 'express';
 import AuthController from './auth.controller';
 
-export default (apiRouter: Router) => {
-  const authRouter = Router();
-  authRouter.get('/signup', AuthController.signup);
+const authRouter = Router();
 
-  apiRouter.use('/auth', authRouter);
-}
+authRouter.get('/signup', AuthController.signup);
 
 
+export default authRouter;
