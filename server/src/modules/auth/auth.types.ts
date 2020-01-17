@@ -1,3 +1,4 @@
+
 import { Request } from 'express';
 import { ClientRequestValidationError } from 'src/utils/error';
 
@@ -32,3 +33,4 @@ export class SignupRequest implements ISignupRequest {
     this.validateRequestData();
   }
 }
+
