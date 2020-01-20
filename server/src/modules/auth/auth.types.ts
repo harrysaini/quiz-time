@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { ClientRequestValidationError } from 'src/utils/error';
+import { ClientRequestValidationError } from '../../utils/error';
 
 export interface ISignupRequest {
   name: string;

@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export interface IUser {
   id: string;
   name: string;
@@ -7,6 +9,7 @@ export interface IUser {
 }
 
 export class User implements IUser {
+  static tableName = 'users';
   id: string;
   name: string;
   username: string;

@@ -1,6 +1,5 @@
-import { createConnection, Connection } from 'mysql2/promise';
+import { createConnection, Connection, Pool, createPool } from 'mysql2/promise';
 import config from 'config';
-import { Pool, createPool } from 'mysql2';
 
 const creds = {
   host: config.get('db.host') as string,

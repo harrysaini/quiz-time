@@ -2,7 +2,7 @@
 
 CREATE TABLE `users` (
   `id` VARCHAR(255) NOT NULL,
-  `name` VARCHAR(255) NULL,
+  `name` VARCHAR(255) NOT NULL,
   `username` VARCHAR(255) NOT NULL,
   `salt` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
@@ -26,10 +26,10 @@ CREATE TABLE `questions` (
   `images` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `topicId_idx` (`topicId`),
-  CONSTRAINT `topicId` 
-    FOREIGN KEY (`topicId`) 
-    REFERENCES `topic` (`id`) 
-    ON DELETE CASCADE 
+  CONSTRAINT `topicId`
+    FOREIGN KEY (`topicId`)
+    REFERENCES `topic` (`id`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE
 );
 
