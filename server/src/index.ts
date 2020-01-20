@@ -1,7 +1,7 @@
 import app from './libs/express';
 import DatabaseConnection from './libs/mysql';
 import { initTables, dropTables } from './helpers/setupDB';
-
+import './utils/logger'
 const port = app.get('port');
 
 const setServer = async () => {

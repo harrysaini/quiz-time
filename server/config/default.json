@@ -1,0 +1,8 @@
+{
+    "db": {
+        "host": "localhost",
+        "username": "root",
+        "password": "galaxyfit1",
+        "database": "quiz_test"
+    }
+}
