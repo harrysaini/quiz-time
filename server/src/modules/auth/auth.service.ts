@@ -1,17 +1,11 @@
 import UserDAO from "../../dao/user.dao";
-import { ISignupRequest } from "./auth.types";
+import { ISignupRequest, IGetUserRequest } from "./auth.types";
 import { hash, genSalt, compare } from 'bcrypt';
-import { User } from "../../models/user.model";
+import User  from "../../models/user.model";
 import uuid from 'uuid/v5';
 
 class AuthService {
-  userDAO: UserDAO;
-
-  constructor(userDAO: UserDAO) {
-    this.userDAO = userDAO;
-  }
-
-  async signup(options: ISignupRequest) {
+  static async signup(options: ISignupRequest) {
     const salt  = await genSalt();
     const hashedPassword = await hash(options.password, salt);
     const userObj = {
@@ -22,7 +16,11 @@ class AuthService {
       salt
     };
     const user = new User(userObj);
-    await this.userDAO.create(user);
+    return await user.save();
+  }
+
+  static async getUser(options: IGetUserRequest) {
+    const user = await User.findById(options.userId);
     return user;
   }
 }

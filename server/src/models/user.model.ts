@@ -1,4 +1,8 @@
 import _ from "lodash";
+import UserDAO from "../dao/user.dao";
+import DATABASE from "../constants/database.constants";
+import Model from "../factories/model";
+import  extend  from 'lodash/extend';
 
 export interface IUser {
   id: string;
@@ -8,13 +12,16 @@ export interface IUser {
   salt: string;
 }
 
-export class User implements IUser {
-  static tableName = 'users';
+
+const userDAO = new UserDAO(DATABASE.TABLE_NAME.USERS);
+
+class User implements IUser {
   id: string;
   name: string;
   username: string;
   password: string;
   salt: string;
+
 
   constructor(userObj: IUser) {
     const {id, name, username, password, salt} = userObj;
@@ -28,4 +35,12 @@ export class User implements IUser {
   toJSON() {
     return _.pick(this, ['id', 'name', 'username']);
   }
+
+  async save() {
+    return userDAO.create(this);
+  }
 }
+
+export default extend(User, Model<User>(userDAO, User));
+
+
