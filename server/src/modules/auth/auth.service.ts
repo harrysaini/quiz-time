@@ -16,7 +16,8 @@ class AuthService {
       salt
     };
     const user = new User(userObj);
-    return await user.save();
+    await user.save();
+    return user;
   }
 
   static async getUser(options: IGetUserRequest) {

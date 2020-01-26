@@ -19,6 +19,7 @@ class AuthController {
       const response = new GenericResponse<User>(RESPONSE_STATUS.SUCCESS, 'Success', user);
       res.json(response);
     } catch (err) {
+      console.log(err.stack);
       const response = new GenericResponse(RESPONSE_STATUS.FAILED, err.message, null, err);
       res.status(HTTP_STATUS.BAD_REQUEST).send(response);
     }

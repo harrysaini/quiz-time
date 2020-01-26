@@ -13,7 +13,7 @@ export interface IUser {
 }
 
 
-const userDAO = new UserDAO(DATABASE.TABLE_NAME.USERS);
+const userDAO = new UserDAO<IUser>(DATABASE.TABLE_NAME.USERS);
 
 class User implements IUser {
   id: string;
@@ -37,7 +37,8 @@ class User implements IUser {
   }
 
   async save() {
-    return userDAO.create(this);
+    await userDAO.create(this);
+    return this;
   }
 }
 
