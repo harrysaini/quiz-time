@@ -4,10 +4,10 @@ import { sign } from 'jsonwebtoken';
 import config from 'config';
 
 import { ISignupRequest, IGetUserRequest, ILoginRequest } from "./auth.types";
-import User  from "../../models/user.model";
+import User from "../../models/user.model";
 import { InvalidCredentials } from "../../utils/errors/requestValidationErrors";
 
-enum LOGIN_FIELDS{
+enum LOGIN_FIELDS {
   USERNAME = 'username',
   PASSWORD = 'password'
 }
@@ -17,7 +17,7 @@ const TOKEN_EXPIRY_TIME = config.get('jwt.expiresIn') as string;
 
 class AuthService {
   static async signup(options: ISignupRequest) {
-    const salt  = await genSalt();
+    const salt = await genSalt();
     const hashedPassword = await hash(options.password, salt);
     const userObj = {
       id: uuid(options.username, uuid.URL),
@@ -27,8 +27,12 @@ class AuthService {
       salt
     };
     const user = new User(userObj);
+    const token = sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY_TIME });
     await user.save();
-    return user;
+    return {
+      user,
+      token
+    }
   }
 
   static async getUser(options: IGetUserRequest) {
@@ -36,17 +40,17 @@ class AuthService {
     return user;
   }
 
-  static async login(options: ILoginRequest){
+  static async login(options: ILoginRequest) {
     const user = await User.findByUsername(options.username);
-    if(!user) {
+    if (!user) {
       throw new InvalidCredentials(LOGIN_FIELDS.USERNAME, options);
     }
     // Compare password hash
-    if(!await compare(options.password, user.password)) {
+    if (!await compare(options.password, user.password)) {
       throw new InvalidCredentials(LOGIN_FIELDS.PASSWORD, options);
     }
 
-    const userToken = sign({id: user.id, username: user.username}, JWT_SECRET, {expiresIn: TOKEN_EXPIRY_TIME});
+    const userToken = sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY_TIME });
 
     return {
       user,

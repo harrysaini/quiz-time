@@ -9,7 +9,7 @@ const setServer = async () => {
   // connection.connect();
   // await dropTables(connection);
   // await initTables(connection);
-  connection.destroy();
+  // connection.destroy();
 };
 
 setServer().then(() => {

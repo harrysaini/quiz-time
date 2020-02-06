@@ -1,5 +1,8 @@
 const MESSAGES = {
-  INVALID_LOGIN_REQUEST: 'Incorrect username or password.'
+  USER: {
+    INVALID_LOGIN_REQUEST: 'Incorrect username or password.',
+    USER_ALREADY_EXIST: 'Username already exist',
+  }
 }
 
 export default MESSAGES;
