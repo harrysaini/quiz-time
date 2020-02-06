@@ -1,7 +1,6 @@
 
 import { Request } from 'express';
-import { ClientRequestValidationError } from '../../utils/errors/error';
-import { userSignupSchema } from './auth.schema';
+import { userSignupSchema, userLoginSchema } from './auth.schema';
 import Validator from '../../utils/validator';
 
 export interface ISignupRequest {
@@ -26,6 +25,28 @@ export class SignupRequest implements ISignupRequest {
     this.username = username;
     this.password = password;
     this.name = name;
+  }
+}
+
+export interface ILoginRequest {
+  username: string;
+  password: string;
+}
+
+export class LoginRequest implements ILoginRequest {
+  username: string;
+  password: string;
+
+  validateRequestData(requestData: any) {
+    const values = Validator.validate(requestData, userLoginSchema);
+    return values;
+  }
+
+  constructor(req: Request) {
+    const values = this.validateRequestData(req.body);
+    const { username, password } = values;
+    this.username = username;
+    this.password = password;
   }
 }
 

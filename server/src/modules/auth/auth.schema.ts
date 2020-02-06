@@ -2,7 +2,6 @@ import Joi from '@hapi/joi';
 
 export const userSignupSchema = Joi.object({
   username: Joi.string()
-    .alphanum()
     .min(3)
     .max(30)
     .required(),
@@ -13,6 +12,16 @@ export const userSignupSchema = Joi.object({
     .min(8),
 
   name: Joi.string()
+    .required()
+
+});
+
+
+export const userLoginSchema = Joi.object({
+  username: Joi.string()
+    .required(),
+
+  password: Joi.string()
     .required()
 
 });

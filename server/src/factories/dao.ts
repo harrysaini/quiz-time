@@ -8,7 +8,7 @@ export default class DAO {
     this.tableName = tableName;
   }
 
-  async findById<T>(id: string): Promise<T | null> {
+  async findById(id: string): Promise<any | null> {
     const query = `SELECT * FROM \`${this.tableName}\`  WHERE \`id\` = ?`;
     const { results, fields } = await QueryExecutor.preparedQuery(query, [id]);
     return results.length ? results[0] : null;

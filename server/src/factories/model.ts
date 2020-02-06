@@ -11,7 +11,7 @@ function Model<T>(dao: DAO, extendingModel: ClassNew<T>){
      * @param id
      */
     async findById(id: string): Promise<T | null> {
-      const obj = await dao.findById<T>(id);
+      const obj = await dao.findById(id);
       return obj ? new extendingModel(obj) : null;
     }
   }

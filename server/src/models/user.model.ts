@@ -40,6 +40,11 @@ class User implements IUser {
     await userDAO.create(this);
     return this;
   }
+
+  static async findByUsername(username: string): Promise<User | null> {
+    const user = await userDAO.findByUsername(username);
+    return user ? new User(user): null;
+  }
 }
 
 export default extend(User, Model<User>(userDAO, User));

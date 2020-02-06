@@ -1,18 +1,24 @@
-// import { ExtractJwt, Strategy } from 'passport-jwt';
-// import config from 'config';
-// import passport from 'passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import config from 'config';
+import passport from 'passport';
 
-// const jwtSecret = config.get('jwtSecret') as string;
+import User from './../models/user.model';
 
-// const opts = {
-//   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-//   secretOrKey: jwtSecret
-// };
+const jwtSecret = config.get('jwt.secret') as string;
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: jwtSecret
+};
 
-// passport.use(new Strategy(opts, async (payload, done) => {
-//   try {
-
-//   } catch (err) {
-//     done(err);
-//   }
-// }))
+passport.use(new Strategy(opts, async (payload, done) => {
+  try {
+    const user = await User.findById(payload.id);
+    if(!user){
+      return done(null);
+    } else {
+      return done(null, user);
+    }
+  } catch (err) {
+    done(err);
+  }
+}))
