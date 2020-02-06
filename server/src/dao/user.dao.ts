@@ -10,7 +10,6 @@ class UserDAO extends DAO {
     super(tableName)
   }
 
-
   async create(userObj: IUser) {
     try {
       const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`name\`, \`username\`, \`salt\`, \`password\`) VALUES( ?, ?, ?, ?, ? )`;

@@ -8,7 +8,7 @@ export interface IQuestion {
   id: string
   topicId: string
   text: string
-  images: string
+  images?: string
 }
 
 const questionDAO = new QuestionDAO(DATABASE.TABLE_NAME.USERS)
@@ -17,7 +17,7 @@ class Question implements IQuestion {
   id: string
   topicId: string
   text: string
-  images: string
+  images?: string
 
   constructor(questionObj: IQuestion) {
     const { id, topicId, text, images } = questionObj
@@ -37,4 +37,4 @@ class Question implements IQuestion {
   }
 }
 
-export default extend(Question, Model<Question>(questionDAO, Question))
+export default extend(Question, Model<Question>(questionDAO, Question));
