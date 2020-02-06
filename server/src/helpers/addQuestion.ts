@@ -9,13 +9,17 @@ const readQuestionsFile = async () => {
 }
 
 const createTopic = async (topic: any) => {
-  const { name, description, image } = topic;
+  const { name, description, image, questions } = topic;
   const topicObj = new Topic({ name, description, image, id: uuid() });
+  await topicObj.save();
+  questions.forEach((question: any) => {
+
+  });
 }
 
 const addQuestionsToDB = async () => {
   const topics = await readQuestionsFile();
-  topics.map(topics, (topic: any) => {
+  await Promise.all(topics.map(topics, (topic: any) => {
     return createTopic(topic);
-  })
+  }));
 }

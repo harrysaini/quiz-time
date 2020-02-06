@@ -1,3 +1,7 @@
+
+server/config/default.js
+.vscode
+
 # Logs
 logs
 *.log

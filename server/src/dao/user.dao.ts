@@ -5,11 +5,11 @@ import DATABASE from '../constants/database.constants';
 import { InvalidRequestError } from '../utils/errors/requestValidationErrors';
 import MESSAGES from '../constants/messages.constants';
 
-class UserDAO<T> extends DAO {
-
+class UserDAO extends DAO {
   constructor(tableName: string) {
-    super(tableName);
+    super(tableName)
   }
+
 
   async create(userObj: IUser) {
     try {
