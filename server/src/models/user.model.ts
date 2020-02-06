@@ -1,52 +1,48 @@
-import _ from "lodash";
-import UserDAO from "../dao/user.dao";
-import DATABASE from "../constants/database.constants";
-import Model from "../factories/model";
-import  extend  from 'lodash/extend';
+import _ from 'lodash'
+import UserDAO from '../dao/user.dao'
+import DATABASE from '../constants/database.constants'
+import Model from '../factories/model'
+import extend from 'lodash/extend'
 
 export interface IUser {
-  id: string;
-  name: string;
-  username: string;
-  password: string;
-  salt: string;
+  id: string
+  name: string
+  username: string
+  password: string
+  salt: string
 }
 
-
-const userDAO = new UserDAO<IUser>(DATABASE.TABLE_NAME.USERS);
+const userDAO = new UserDAO(DATABASE.TABLE_NAME.USERS)
 
 class User implements IUser {
-  id: string;
-  name: string;
-  username: string;
-  password: string;
-  salt: string;
-
+  id: string
+  name: string
+  username: string
+  password: string
+  salt: string
 
   constructor(userObj: IUser) {
-    const {id, name, username, password, salt} = userObj;
-    this.id = id;
-    this.name = name;
-    this.username = username;
-    this.password = password;
-    this.salt = salt;
+    const { id, name, username, password, salt } = userObj
+    this.id = id
+    this.name = name
+    this.username = username
+    this.password = password
+    this.salt = salt
   }
 
   toJSON() {
-    return _.pick(this, ['id', 'name', 'username']);
+    return _.pick(this, ['id', 'name', 'username'])
   }
 
   async save() {
-    await userDAO.create(this);
-    return this;
+    await userDAO.create(this)
+    return this
   }
 
   static async findByUsername(username: string): Promise<User | null> {
-    const user = await userDAO.findByUsername(username);
-    return user ? new User(user): null;
+    const user = await userDAO.findByUsername(username)
+    return user ? new User(user) : null
   }
 }
 
-export default extend(User, Model<User>(userDAO, User));
-
-
+export default extend(User, Model<User>(userDAO, User))
