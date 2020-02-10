@@ -10,7 +10,7 @@ class TopicDAO extends DAO {
 
   async create(topicObj: ITopic) {
     try {
-      const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`name\`, \`description\`, \`image\`) VALUES( ?, ?, ?, ?, ? )`;
+      const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`name\`, \`description\`, \`image\`) VALUES( ?, ?, ?, ?)`;
       await QueryExecutor.preparedQuery(query, [topicObj.id, topicObj.name, topicObj.description, topicObj.image]);
     } catch (err) {
       // if (err.code === DATABASE.ERRORS.DUPLICATE_ENTRY) {

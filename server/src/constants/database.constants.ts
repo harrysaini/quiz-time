@@ -3,7 +3,8 @@ const DATABASE = {
     USERS: 'users',
     QUESTIONS: 'questions',
     ANSWERS: 'answers',
-    CORRECT_ANSWER: 'correct_answer'
+    CORRECT_ANSWER: 'correct_answer',
+    TOPIC: 'topic'
   },
   ERRORS: {
     DUPLICATE_ENTRY: 'ER_DUP_ENTRY'

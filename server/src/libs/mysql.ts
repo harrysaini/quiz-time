@@ -20,6 +20,7 @@ class DatabaseConnection {
       ...creds,
       multipleStatements: true
     });
+    this.setupConnection = connection;
     return connection;
   }
 
@@ -30,9 +31,10 @@ class DatabaseConnection {
     const pool = this.pool || await createPool({
       ...creds,
       waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0
+      connectionLimit: 20,
+      queueLimit: 40
     });
+    this.pool = pool;
     return pool;
   }
 }

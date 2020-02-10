@@ -8,23 +8,23 @@ export interface IQuestion {
   id: string
   topicId: string
   text: string
-  images?: string
+  images: string | null
 }
 
-const questionDAO = new QuestionDAO(DATABASE.TABLE_NAME.USERS)
+const questionDAO = new QuestionDAO(DATABASE.TABLE_NAME.QUESTIONS)
 
 class Question implements IQuestion {
-  id: string
-  topicId: string
-  text: string
-  images?: string
+  id: string;
+  topicId: string;
+  text: string;
+  images: string | null = null;
 
   constructor(questionObj: IQuestion) {
     const { id, topicId, text, images } = questionObj
     this.id = id
     this.topicId = topicId
     this.text = text
-    this.images = images
+    this.images = images || null;
   }
 
   toJSON() {

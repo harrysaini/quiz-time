@@ -12,7 +12,7 @@ export interface ITopic {
 }
 
 
-const topicDAO = new TopicDAO(DATABASE.TABLE_NAME.USERS);
+const topicDAO = new TopicDAO(DATABASE.TABLE_NAME.TOPIC);
 
 class Topic implements ITopic {
   id: string;

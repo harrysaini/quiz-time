@@ -3,6 +3,7 @@ import uuid from 'uuid/v4';
 import FSUtils from "../utils/fsUtils";
 import { Question, Topic, Answer } from '../models';
 import CorrectAnswerDAO from '../dao/correctAnswer.dao';
+import map from 'lodash/map';
 
 const readQuestionsFile = async () => {
   const topics = await FSUtils.readFile(path.join(__dirname, '../../config/topics.json'));
@@ -38,7 +39,9 @@ const createTopic = async (topic: any) => {
 
 const addQuestionsToDB = async () => {
   const topics = await readQuestionsFile();
-  await Promise.all(topics.map(topics, (topic: any) => {
+  await Promise.all(map(topics, (topic: any) => {
     return createTopic(topic);
   }));
 }
+
+export default addQuestionsToDB;

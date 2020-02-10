@@ -19,9 +19,9 @@ CREATE TABLE `topic` (
 -- Questions
 CREATE TABLE `questions` (
   `id` varchar(255) NOT NULL,
-  `topicId` varchar(255) DEFAULT NOT NULL,
+  `topicId` varchar(255) NOT NULL,
   `text` varchar(255) NOT NULL,
-  `images` varchar(255) DEFAULT NOT NULL,
+  `images` varchar(255),
   PRIMARY KEY (`id`),
   KEY `topicId_idx` (`topicId`),
   CONSTRAINT `topicId` FOREIGN KEY (`topicId`) REFERENCES `topic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
