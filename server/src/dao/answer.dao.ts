@@ -8,13 +8,20 @@ class AnswerDAO extends DAO {
   }
 
   async create(answerObj: IAnswer) {
-    const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`text\`, \`questionId\`, \`index\`) VALUES( ?, ?, ?, ? )`
-    await QueryExecutor.preparedQuery(query, [
+    const fields = ['id', 'text', 'questionId', 'index'];
+    const values = [
       answerObj.id,
       answerObj.text,
       answerObj.questionId,
-      answerObj.index,
-    ])
+      answerObj.index
+    ];
+    await this.insert(fields, values);
+  }
+
+  async getAnswersForQuestion(questionId: string) {
+    const query = `SELECT * FROM \`${this.tableName}\` WHERE questionId=?`;
+    const { results } = await QueryExecutor.preparedQuery(query, [questionId]);
+    return results.length ? results : null;
   }
 }
 

@@ -9,15 +9,9 @@ class TopicDAO extends DAO {
   }
 
   async create(topicObj: ITopic) {
-    try {
-      const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`name\`, \`description\`, \`image\`) VALUES( ?, ?, ?, ?)`;
-      await QueryExecutor.preparedQuery(query, [topicObj.id, topicObj.name, topicObj.description, topicObj.image]);
-    } catch (err) {
-      // if (err.code === DATABASE.ERRORS.DUPLICATE_ENTRY) {
-      //   throw new InvalidRequestError(MESSAGES.USER.USER_ALREADY_EXIST);
-      // }
-      throw err;
-    }
+    const fields = [`id`, `name`, `description`, `image`];
+    const  values = [topicObj.id, topicObj.name, topicObj.description, topicObj.image];
+    await this.insert(fields, values);
   }
 }
 

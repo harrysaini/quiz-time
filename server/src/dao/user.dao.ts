@@ -12,8 +12,15 @@ class UserDAO extends DAO {
 
   async create(userObj: IUser) {
     try {
-      const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`name\`, \`username\`, \`salt\`, \`password\`) VALUES( ?, ?, ?, ?, ? )`;
-      await QueryExecutor.preparedQuery(query, [userObj.id, userObj.name, userObj.username, userObj.salt, userObj.password]);
+      const fields = [`id`, `name`, `username`, `salt`, `password`];
+      const values = [
+        userObj.id,
+        userObj.name,
+        userObj.username,
+        userObj.salt,
+        userObj.password
+      ];
+      await this.insert(fields, values);
     } catch (err) {
       if (err.code === DATABASE.ERRORS.DUPLICATE_ENTRY) {
         throw new InvalidRequestError(MESSAGES.USER.USER_ALREADY_EXIST);

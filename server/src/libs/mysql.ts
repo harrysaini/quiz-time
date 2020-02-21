@@ -1,11 +1,12 @@
-import { createConnection, Connection, Pool, createPool } from 'mysql2/promise';
+import { createConnection, Connection, Pool, createPool, ConnectionOptions } from 'mysql2/promise';
 import config from 'config';
 
-const creds = {
+const creds: ConnectionOptions = {
   host: config.get('db.host') as string,
   user: config.get('db.username') as string,
   database: config.get('db.database') as string,
   password: config.get('db.password') as string,
+  // debug: true
 }
 
 class DatabaseConnection {
@@ -18,7 +19,8 @@ class DatabaseConnection {
   static async getSetupConnection() {
     const connection = this.setupConnection || await createConnection({
       ...creds,
-      multipleStatements: true
+      multipleStatements: true,
+
     });
     this.setupConnection = connection;
     return connection;
@@ -32,7 +34,7 @@ class DatabaseConnection {
       ...creds,
       waitForConnections: true,
       connectionLimit: 20,
-      queueLimit: 40
+      queueLimit: 100
     });
     this.pool = pool;
     return pool;

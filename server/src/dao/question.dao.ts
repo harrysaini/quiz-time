@@ -8,13 +8,21 @@ class QuestionDAO extends DAO {
   }
 
   async create(questionObj: IQuestion) {
-    const query = `INSERT INTO \`${this.tableName}\` (\`id\`, \`text\`, \`topicId\`, \`images\`) VALUES( ?, ?, ?, ? )`
-    await QueryExecutor.preparedQuery(query, [
+    const fields = [`id`, `text`, `topicId`, `images`];
+    const values = [
       questionObj.id,
       questionObj.text,
       questionObj.topicId,
       questionObj.images,
-    ])
+    ];
+    await this.insert(fields, values);
+  }
+
+  async getQuestionsForTopic(topicId: string, limit: number) {
+    const query = `SELECT * FROM \`${this.tableName}\` WHERE \`topicId\` = ? ORDER BY RAND() LIMIT ${limit};`;
+    const { results } = await QueryExecutor.preparedQuery(query, [topicId]);
+    console.log(results);
+    return results.length ? results : null;
   }
 }
 

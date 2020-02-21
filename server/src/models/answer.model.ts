@@ -3,6 +3,8 @@ import AnswerDAO from '../dao/answer.dao'
 import DATABASE from '../constants/database.constants'
 import Model from '../factories/model'
 import extend from 'lodash/extend'
+import { IQuestion } from './question.model'
+import map from 'lodash/map'
 
 export interface IAnswer {
   id: string
@@ -27,13 +29,15 @@ class Answer implements IAnswer {
     this.index = index
   }
 
-  toJSON() {
-    return _.pick(this, ['id', 'topicId', 'text', 'images'])
-  }
 
   async save() {
     await answerDAO.create(this)
     return this
+  }
+
+  static async getAnswersForQuestion(question: IQuestion): Promise<Answer[]> {
+    const answers = await answerDAO.getAnswersForQuestion(question.id);
+    return map(answers, answer => new Answer(answer));
   }
 }
 

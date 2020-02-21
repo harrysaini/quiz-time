@@ -20,7 +20,7 @@ const createTopic = async (topic: any) => {
     await questionObj.save();
     let correctAnswerId: string = '';
 
-    await Promise.all(answers.map((answer: string, index: number) => {
+    await Promise.all(answers.map(async (answer: string, index: number) => {
       const answerObj = new Answer({
         id: uuid(),
         text: answer,
@@ -30,10 +30,10 @@ const createTopic = async (topic: any) => {
       if (correctIndex === index) {
         correctAnswerId = answerObj.id;
       }
-      return answerObj.save();
+      await answerObj.save();
     }));
 
-    await CorrectAnswerDAO.insert(questionObj.id, correctAnswerId);
+    await CorrectAnswerDAO.create(questionObj.id, correctAnswerId);
   }));
 }
 

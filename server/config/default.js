@@ -8,6 +8,9 @@ const conf = {
     jwt: {
       secret: 'sdasfnSAFjsafbHSAKJDHfesKLASJAasjkbfkladsbfkjad7896dasgdhs',
       expiresIn: '10 days'
+    },
+    game: {
+      numOfQuestions: 7
     }
 }
 

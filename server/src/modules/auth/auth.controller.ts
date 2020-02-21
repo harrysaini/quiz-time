@@ -15,8 +15,8 @@ class AuthController {
   static async signup(req: Request, res: Response) {
     try {
       const options = new SignupRequest(req);
-      const user: IUser = await AuthService.signup(options);
-      const response = new GenericResponse<IUser>(RESPONSE_STATUS.SUCCESS, 'Success', user);
+      const user = await AuthService.signup(options);
+      const response = new GenericResponse(RESPONSE_STATUS.SUCCESS, 'Success', user);
       res.json(response);
     } catch (err) {
       console.log(err.stack);

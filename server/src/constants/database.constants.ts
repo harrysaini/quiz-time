@@ -4,7 +4,9 @@ const DATABASE = {
     QUESTIONS: 'questions',
     ANSWERS: 'answers',
     CORRECT_ANSWER: 'correct_answer',
-    TOPIC: 'topic'
+    TOPIC: 'topic',
+    GAME: 'game',
+    GAME_QUESTIONS: 'game_questions'
   },
   ERRORS: {
     DUPLICATE_ENTRY: 'ER_DUP_ENTRY'

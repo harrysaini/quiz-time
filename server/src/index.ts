@@ -6,6 +6,7 @@ import addQuestionsToDB from './helpers/addQuestion';
 const port = app.get('port');
 
 const setServer = async () => {
+  return ;
   const connection = await DatabaseConnection.getSetupConnection();
   connection.connect();
   await dropTables(connection);

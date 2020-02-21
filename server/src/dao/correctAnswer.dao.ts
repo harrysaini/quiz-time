@@ -3,17 +3,29 @@ import DAO from '../factories/dao'
 import QueryExecutor from '../utils/database/queryExecutor'
 import DATABASE from '../constants/database.constants'
 
-class CorrectAnswerDAO extends DAO {
-  constructor(tableName: string) {
-    super(tableName)
-  }
+const tableName = DATABASE.TABLE_NAME.CORRECT_ANSWER;
 
-  static async insert(questionId: string, answerId: string) {
-    const query = `INSERT INTO \`${DATABASE.TABLE_NAME.CORRECT_ANSWER}\` (\`questionId\`, \`answerId\`) VALUES( ?, ? )`
-    await QueryExecutor.preparedQuery(query, [
+export interface ICorrectAnswer {
+  questionId: string;
+  answerId: string;
+  id: number;
+}
+
+class CorrectAnswerDAO extends DAO {
+
+  static async create(questionId: string, answerId: string) {
+    const fields = ['questionId', 'answerId'];
+    const values = [
       questionId,
       answerId
-    ]);
+    ];
+    await DAO.insert(tableName, fields, values);
+  }
+
+  static async getCorrectAnswerOfQuestion(questionId: string): Promise<ICorrectAnswer | null> {
+    const query = `SELECT * FROM \`${tableName}\` WHERE questionId=?`;
+    const { results } = await QueryExecutor.preparedQuery(query, [questionId]);
+    return results.length ? results[0] : null;
   }
 }
 
